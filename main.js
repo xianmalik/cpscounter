@@ -10,6 +10,6 @@ app.on('ready', () => {
       	nodeIntegration: true
       }
   });
-//   mainWindow.setMenu(null);
+  // mainWindow.setMenu(null);
   mainWindow.loadURL('file://' + __dirname + '/index.html');
 });

@@ -29,12 +29,13 @@ body {
 	outline: none;
 	color: #19b3b8;
 	background-color: #2c2c42;
-	box-shadow: 3px 3px 15px rgba( 51, 51, 51, 0.3 );
+	box-shadow: 0px 0px 25px #19b3b810;
+	transition: box-shadow 0.1s ease-in-out;
 }
-#cps-main-btn:focus {
+#cps-main-btn:active {
 	box-shadow: 0 0 0 rgba( 51, 51, 51, 0.3 );
 }
-#result {
+#time {
 	color: #19b3b8;
 	font-family: 'Fira Code', serif;
 	font-size: 18px;

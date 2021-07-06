@@ -1,24 +1,31 @@
-window.addEventListener('DOMContentLoaded', (event) => {
-    console.log('DOM fully loaded and parsed');
-	let i = 1,
-		flag = false;
-	let time = 3;
-	const button = document.getElementById('cps-main-btn');
-	const result = document.getElementById('result');
+window.addEventListener('DOMContentLoaded', () => {
+	let i		= 1,
+		time	= 10,
+		flag	= false;
 
-	result.innerHTML = `Time: ${ time }s`;
+	let buttonEl = document.getElementById('cps-main-btn'),
+		timeEl	 = document.getElementById('time');
+
+	timeEl.innerHTML = `Time: ${ time }s`;
+
+	function timeLoop(t, el) {
+		if ( t <= 0 ) return;
+		el.innerHTML = 'Time: ' + --t + 's';
+		setTimeout( function(){ timeLoop(t, el) } , 1000 )
+	}
 	
 	function cps(e) {
 		if ( ! flag ) {
 			i = 1;
 			setTimeout(function() {
-				button.removeEventListener('click', cps);
-				result.innerHTML = `CPS: ${ (i / time).toFixed(2) }`;
+				buttonEl.removeEventListener('click', cps);
+				timeEl.innerHTML = `CPS: ${ ( (i - 1) / time).toFixed(2) }`;
 			}, time * 1000);
-			flag = true;
+			flag = ! flag;
+			timeLoop(time, timeEl);
 		}
-		button.innerHTML = i++;
+		buttonEl.innerHTML = i++;
 	}
 
-	button.addEventListener('click', cps);
+	buttonEl.addEventListener('click', cps);
 });
